@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AP-Self Driving Car</title>
+    <meta name="description" content="AP-Self Driving Car — A neural network simulation built from scratch. No libraries.">
+    <meta name="theme-color" content="#0d0d1f">
+    <meta property="og:title" content="AP-Self Driving Car">
+    <meta property="og:description" content="Neural network self-driving car simulation — zero libraries, built from scratch.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="topbar">
+        <div id="brand">
+            <span class="brand-icon"></span>
+            <span class="brand-name">AP<span class="brand-accent">-Self Driving 🚗</span></span>
+        </div>
+        <div id="live-stats">
+            <div class="stat-chip">
+                <span class="stat-label">GEN</span>
+                <span class="stat-val" id="genCount">1</span>
+            </div>
+            <div class="stat-chip">
+                <span class="stat-label">SCORE</span>
+                <span class="stat-val" id="scoreVal">0</span>
+            </div>
+        </div>
+        <div id="header-btns">
+            <button class="ctrl-btn save-btn" onclick="save()" title="Save best brain">💾 Save</button>
+            <button class="ctrl-btn disc-btn" onclick="discard()" title="Discard brain">🗑️</button>
+            <button class="ctrl-btn info-btn" onclick="toggleInfo()" title="How to use">❓</button>
+        </div>
+    </header>
+
+    <main id="sim-area">
+        <div id="canvas-wrap-car">
+            <canvas id="carCanvas"></canvas>
+        </div>
+        <div id="canvas-wrap-net">
+            <div id="net-label">⚡ Neural Network — Best Car</div>
+            <canvas id="networkCanvas"></canvas>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <span>© 2026 <strong>AP-Self Driving Car</strong> &nbsp;·&nbsp; Built with zero libraries &nbsp;·&nbsp; Powered by Neuroevolution</span>
+    </footer>
+
+    <div id="info-overlay" class="hidden">
+        <div id="info-card">
+            <button id="info-close" onclick="toggleInfo()">✕</button>
+            <div class="info-brand">AP-Self Driving 🚘</div>
+            <p>A neural network trained entirely in your browser — <strong>no external AI libraries</strong>.</p>
+            <div class="info-grid">
+                <div class="info-item"><div class="info-icon">🟡</div><div>Yellow rays are <strong>sensors</strong> — they detect road borders and traffic</div></div>
+                <div class="info-item"><div class="info-icon">🧠</div><div>Right panel shows the <strong>live neural network</strong> of the best car</div></div>
+                <div class="info-item"><div class="info-icon">💾</div><div>When a car performs well, press <strong>Save</strong> then refresh to train next generation</div></div>
+                <div class="info-item"><div class="info-icon">🗑️</div><div>Discard resets weights to random — start fresh</div></div>
+                <div class="info-item"><div class="info-icon">🔁</div><div><strong>100 cars</strong> per generation — best one shown in full color</div></div>
+            </div>
+            <button class="close-btn" onclick="toggleInfo()">Let's Drive! 🚗</button>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <script src="visualizer.js"></script>
+    <script src="network.js"></script>
+    <script src="sensor.js"></script>
+    <script src="utils.js"></script>
+    <script src="road.js"></script>
+    <script src="controls.js"></script>
+    <script src="car.js"></script>
+    <script src="main.js"></script>
+    <script>
+        function toggleInfo() {
+            document.getElementById("info-overlay").classList.toggle("hidden");
+        }
+    </script>
+</body>
+</html>
